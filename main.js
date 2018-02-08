@@ -78,14 +78,34 @@ function makeNewCoffee(e) {
     e.preventDefault();
     var newCoffee = document.getElementById("new-coffee").value;
     var newRoast = document.getElementById("new-roast").value;
-    var coffeeID = coffees.length + 1;
+    var lightIndex = coffees.findIndex(coffee => coffee.roast == "medium");
+    var mediumIndex = coffees.findIndex(coffee => coffee.roast == "dark");
+    var darkId = coffees.length + 1;
+    var coffee = {
+        id: "",
+        name: newCoffee,
+        roast: newRoast
+    };
     if (newCoffee != "") {
-        var coffee = {
-            id: coffeeID,
-            name: newCoffee,
-            roast: newRoast
-        };
-        coffees.push(coffee);
+        if (newRoast == "light") {
+            coffee.id = lightIndex;
+            coffees.splice(lightIndex, 0, coffee);
+            for(var i = lightIndex+1; i < coffees.length; i++){
+                coffees[i].id += 1;
+            }
+        }
+        else if (newRoast == "medium") {
+            coffee.id = mediumIndex;
+            coffees.splice(mediumIndex, 0, coffee);
+            for(var i = mediumIndex+1; i < coffees.length; i++){
+                coffees[i].id += 1;
+            }
+        } else if (newRoast == "dark") {
+            coffee.id = darkId;
+            coffees.push(coffee);
+        }
+
+
         interactiveKey();
         document.getElementById("new-coffee").value = "";
     }
