@@ -17,20 +17,19 @@
     background-position: center;
     color: #4e2b0a;
     text-align: center;
-    /*padding-top: 28%;*/
+}    /*padding-top: 28%;*/
 
-}
 
 #companyImage {
     /*opacity: 0.4;*/
-    margin-top: 210px;
-    margin-left: 30%;
+    margin-top: 200px;
+    margin-left: 33%;
     height: 429px;
     width: 460px;
     padding-top: 90px;
     background-image: url("https://i.stack.imgur.com/CZeBo.png");
     background-position: center;
-    no-repeat: center center fixed;
+    background-repeat: no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -38,6 +37,9 @@
     font-family: 'Anton', sans-serif;
     text-align: center;
 }
+
+
+
 
 #smScreenCompanyName {
     text-align: center;

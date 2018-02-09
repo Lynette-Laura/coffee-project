@@ -117,3 +117,20 @@ tbody.innerHTML = renderCoffees(coffees);
 
 submitButton.addEventListener('click', updateCoffees);
 newCoffee.addEventListener('click', makeNewCoffee);
+
+
+
+
+//-------------_-_-_--_-_-_--_--__-__-Animation Mug--__--_-_--_-_-__-__--_--_
+
+var mug = document.querySelector("img");
+var angle = 0, lastTime = null;
+function animate(time){
+    if (lastTime != null)
+        angle += (time - lastTime) * 0.0007;
+    lastTime = time;
+    mug.style.top = (Math.sin(angle) * 20) + "px";
+    mug.style.right = (Math.cos(angle) * 300) + "px";
+    requestAnimationFrame(animate);
+}
+requestAnimationFrame(animate);
