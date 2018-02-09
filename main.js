@@ -25,27 +25,7 @@ function updateCoffees(e) {
 }
 
 
-//___---_---_--_--_-_--_--_--this function updates the select option without pressing submit--_--_----_-__-_
 
-function choiceSelect() {
-// var form = document.getElementById("input").value.toLowerCase();
-var selectedRoast = roastSelection.value;
-var filteredCoffees = [];
-coffees.forEach(function(coffee) {
-    if (selectedRoast === "all") {
-        filteredCoffees.push(coffee);
-    }
-    else {
-        if (coffee.roast === selectedRoast) {
-            filteredCoffees.push(coffee);
-        }
-    }
-
-});
-
-tbody.innerHTML = renderCoffees(filteredCoffees);
-
-}
 
 function interactiveKey() {
     var form = document.getElementById("input").value.toLowerCase();
@@ -63,8 +43,6 @@ function interactiveKey() {
             }
             else if (lowerCoffee.indexOf(form) !== -1 && coffee.roast === selectedRoast) {
                 filteredCoffees.push(coffee);
-            } else {
-                console.log("error");
             }
         }
 
@@ -78,8 +56,8 @@ function makeNewCoffee(e) {
     e.preventDefault();
     var newCoffee = document.getElementById("new-coffee").value;
     var newRoast = document.getElementById("new-roast").value;
-    var lightIndex = coffees.findIndex(coffee => coffee.roast == "medium");
-    var mediumIndex = coffees.findIndex(coffee => coffee.roast == "dark");
+    var lightIndex = coffees.findIndex(function(coffee, index) { return coffee.roast == "medium"});
+    var mediumIndex = coffees.findIndex(function(coffee, index) { return coffee.roast == "dark"});
     var darkId = coffees.length + 1;
     var coffee = {
         id: "",
@@ -90,14 +68,14 @@ function makeNewCoffee(e) {
         if (newRoast == "light") {
             coffee.id = lightIndex;
             coffees.splice(lightIndex, 0, coffee);
-            for(var i = lightIndex+1; i < coffees.length; i++){
+            for(var i = lightIndex; i < coffees.length; i++){
                 coffees[i].id += 1;
             }
         }
         else if (newRoast == "medium") {
             coffee.id = mediumIndex;
             coffees.splice(mediumIndex, 0, coffee);
-            for(var i = mediumIndex+1; i < coffees.length; i++){
+            for(i = mediumIndex; i < coffees.length; i++){
                 coffees[i].id += 1;
             }
         } else if (newRoast == "dark") {
@@ -127,7 +105,7 @@ var coffees = [
     {id: 11, name: 'Espresso', roast: 'dark'},
     {id: 12, name: 'Viennese', roast: 'dark'},
     {id: 13, name: 'Italian', roast: 'dark'},
-    {id: 14, name: 'French', roast: 'dark'},
+    {id: 14, name: 'French', roast: 'dark'}
 ];
 
 var tbody = document.querySelector('#coffees');
